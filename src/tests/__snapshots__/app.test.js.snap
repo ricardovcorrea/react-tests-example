@@ -1,0 +1,48 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`App if state content is defined should render correct HTML 1`] = `
+<div>
+  <div
+    class="app"
+  >
+    <div>
+      Mock Simple Header
+    </div>
+    <div
+      class="app__counter"
+    >
+      <div>
+        Mock Simple Button
+      </div>
+      <input
+        readonly=""
+        type="text"
+        value="215"
+      />
+      <div>
+        Mock Simple Button
+      </div>
+    </div>
+    <div>
+      <div>
+        Mock Simple Button
+      </div>
+      <div>
+        Mock Simple Button
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`App should render correct HTML 1`] = `
+<div>
+  <div
+    class="app"
+  >
+    <div>
+      Loading...
+    </div>
+  </div>
+</div>
+`;

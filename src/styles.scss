@@ -1,0 +1,31 @@
+.app {
+  font-family: sans-serif;
+
+  height: 50vh;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  row-gap: 5%;
+
+  text-align: center;
+
+  &__counter {
+    display: flex;
+    column-gap: 5%;
+  }
+}
+
+.simple-header {
+  h1 {
+    margin: 0;
+  }
+
+  span {
+    font-size: 0.7rem;
+    color: blue;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+}

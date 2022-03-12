@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SimpleButton should render correct html 1`] = `
+<div>
+  <button
+    class="simple-button"
+  >
+    Mock button label
+  </button>
+</div>
+`;

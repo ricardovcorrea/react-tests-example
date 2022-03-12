@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SimpleHeader should render correct html 1`] = `
+<div>
+  <div
+    class="simple-header"
+  >
+    <h1>
+      mock title
+    </h1>
+    <span
+      id="change-language-button"
+    >
+      mock change language
+    </span>
+  </div>
+</div>
+`;
