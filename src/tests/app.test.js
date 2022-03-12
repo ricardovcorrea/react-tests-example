@@ -61,7 +61,7 @@ describe('App', () => {
   });
 
   it('should call useState hook 1 time', () => {
-    render(<App />);
+    sut = render(<App />);
 
     expect(useState).toHaveBeenCalledTimes(1);
   });
@@ -69,7 +69,7 @@ describe('App', () => {
   it('should call useState hook with correct arguments', () => {
     CONSTANTS.LANGUAGE_EN = 'mock en language';
 
-    render(<App />);
+    sut = render(<App />);
 
     expect(useState).toHaveBeenCalledWith({
       language: 'mock en language',
@@ -79,13 +79,13 @@ describe('App', () => {
   });
 
   it('should call useCallback hook 3 times', () => {
-    render(<App />);
+    sut = render(<App />);
 
     expect(useCallback).toHaveBeenCalledTimes(3);
   });
 
   it('should call useCallback hook for the 1st time with correct arguments', () => {
-    render(<App />);
+    sut = render(<App />);
 
     expect(useCallback).toHaveBeenNthCalledWith(1, expect.any(Function), []);
   });
@@ -93,7 +93,7 @@ describe('App', () => {
   it('should call useCallback hook for the 2nd time with correct arguments', () => {
     state.language = 'mock language';
 
-    render(<App />);
+    sut = render(<App />);
 
     expect(useCallback).toHaveBeenNthCalledWith(2, expect.any(Function), [
       'mock language',
@@ -104,7 +104,7 @@ describe('App', () => {
   it('should call useCallback hook for the 3rd time with correct arguments', () => {
     state.counter = 537;
 
-    render(<App />);
+    sut = render(<App />);
 
     expect(useCallback).toHaveBeenNthCalledWith(3, expect.any(Function), [
       537,
@@ -113,7 +113,7 @@ describe('App', () => {
   });
 
   it('should call useEffect hook 1 time', () => {
-    render(<App />);
+    sut = render(<App />);
 
     expect(useEffect).toHaveBeenCalledTimes(1);
   });
@@ -121,7 +121,7 @@ describe('App', () => {
   it('should call useEffect hook with correct arguments', () => {
     state.language = 'other mock language';
 
-    render(<App />);
+    sut = render(<App />);
 
     expect(useEffect).toHaveBeenCalledWith(expect.any(Function), [
       'other mock language',
@@ -129,14 +129,16 @@ describe('App', () => {
   });
 
   it('should render correct HTML', () => {
-    const { container } = render(<App />);
+    sut = render(<App />);
+
+    const { container } = sut;
 
     expect(container).toMatchSnapshot();
   });
 
   describe('if mergeState method is called', () => {
     it('should call setState 1 time', () => {
-      render(<App />);
+      sut = render(<App />);
 
       useCallback.mock.calls[0][0]();
 
@@ -144,7 +146,7 @@ describe('App', () => {
     });
 
     it('should call setState with correct arguments', () => {
-      render(<App />);
+      sut = render(<App />);
 
       useCallback.mock.calls[0][0]();
 
@@ -153,7 +155,7 @@ describe('App', () => {
 
     describe('if the function received by setState is called', () => {
       it('should return the correct value', () => {
-        render(<App />);
+        sut = render(<App />);
 
         useCallback.mock.calls[0][0]({
           new: 'keys',
@@ -176,7 +178,7 @@ describe('App', () => {
 
   describe('if handleChangeLanguage method is called', () => {
     it('should call mergeState method 1 time', () => {
-      render(<App />);
+      sut = render(<App />);
 
       useCallback.mock.calls[1][0]();
 
@@ -189,7 +191,7 @@ describe('App', () => {
 
       state.language = 'mock en language';
 
-      render(<App />);
+      sut = render(<App />);
 
       useCallback.mock.calls[1][0]();
 
@@ -206,7 +208,7 @@ describe('App', () => {
 
         state.language = 'mock pt language';
 
-        render(<App />);
+        sut = render(<App />);
 
         useCallback.mock.calls[1][0]();
 
@@ -220,7 +222,7 @@ describe('App', () => {
 
   describe('if handleChangeCounter method is called', () => {
     it('should not call mergeState method 1 time', () => {
-      render(<App />);
+      sut = render(<App />);
 
       useCallback.mock.calls[2][0]({});
 
@@ -231,7 +233,7 @@ describe('App', () => {
       it('should call mergeState method 1 time', () => {
         CONSTANTS.COUNTER_UPDATE_TYPE_INCREASE = 'increase';
 
-        render(<App />);
+        sut = render(<App />);
 
         useCallback.mock.calls[2][0]({
           type: 'increase',
@@ -244,7 +246,7 @@ describe('App', () => {
         CONSTANTS.COUNTER_UPDATE_TYPE_INCREASE = 'increase';
         state.counter = 4;
 
-        render(<App />);
+        sut = render(<App />);
 
         useCallback.mock.calls[2][0]({
           type: 'increase',
@@ -260,7 +262,7 @@ describe('App', () => {
           CONSTANTS.COUNTER_UPDATE_TYPE_INCREASE = 'increase';
           state.counter = 15;
 
-          render(<App />);
+          sut = render(<App />);
 
           useCallback.mock.calls[2][0]({
             type: 'increase',
@@ -278,7 +280,7 @@ describe('App', () => {
       it('should call mergeState method 1 time', () => {
         CONSTANTS.COUNTER_UPDATE_TYPE_DECREASE = 'decrease';
 
-        render(<App />);
+        sut = render(<App />);
 
         useCallback.mock.calls[2][0]({
           type: 'decrease',
@@ -291,7 +293,7 @@ describe('App', () => {
         CONSTANTS.COUNTER_UPDATE_TYPE_DECREASE = 'decrease';
         state.counter = 32;
 
-        render(<App />);
+        sut = render(<App />);
 
         useCallback.mock.calls[2][0]({
           type: 'decrease',
@@ -307,7 +309,7 @@ describe('App', () => {
           CONSTANTS.COUNTER_UPDATE_TYPE_DECREASE = 'decrease';
           state.counter = 652;
 
-          render(<App />);
+          sut = render(<App />);
 
           useCallback.mock.calls[2][0]({
             type: 'decrease',
@@ -324,7 +326,7 @@ describe('App', () => {
 
   describe('if the function received by the 1st useEffect is called', () => {
     it('should call GrabContent service 1 time', (done) => {
-      render(<App />);
+      sut = render(<App />);
 
       useEffect.mock.calls[0][0]();
 
@@ -342,7 +344,7 @@ describe('App', () => {
     it('should call GrabContent service with correct arguments', (done) => {
       state.language = 'any mocked language';
 
-      render(<App />);
+      sut = render(<App />);
 
       useEffect.mock.calls[0][0]();
 
@@ -360,7 +362,7 @@ describe('App', () => {
     });
 
     it('should call mergeState method 1 time', (done) => {
-      render(<App />);
+      sut = render(<App />);
 
       useEffect.mock.calls[0][0]();
 
@@ -381,7 +383,7 @@ describe('App', () => {
         mock: 'value',
       });
 
-      render(<App />);
+      sut = render(<App />);
 
       useEffect.mock.calls[0][0]();
 
@@ -413,13 +415,15 @@ describe('App', () => {
       SimpleHeader.mockReturnValue(<div>Mock Simple Header</div>);
       SimpleButton.mockReturnValue(<div>Mock Simple Button</div>);
 
-      const { container } = render(<App />);
+      sut = render(<App />);
+
+      const { container } = sut;
 
       expect(container).toMatchSnapshot();
     });
 
     it('should call SimpleHeader component 1 time', () => {
-      render(<App />);
+      sut = render(<App />);
 
       expect(SimpleHeader).toHaveBeenCalledTimes(1);
     });
@@ -428,7 +432,7 @@ describe('App', () => {
       state.content.title = 'mock title';
       state.content.changeLanguage = 'mock change language';
 
-      render(<App />);
+      sut = render(<App />);
 
       expect(SimpleHeader.mock.calls[0][0]).toStrictEqual({
         labels: {
@@ -440,7 +444,7 @@ describe('App', () => {
     });
 
     it('should call SimpleButton component 4 times', () => {
-      render(<App />);
+      sut = render(<App />);
 
       expect(SimpleButton).toHaveBeenCalledTimes(4);
     });
@@ -449,7 +453,7 @@ describe('App', () => {
       it('should be called with correct props', () => {
         state.content.decrease = 'mock decrease';
 
-        render(<App />);
+        sut = render(<App />);
 
         expect(SimpleButton.mock.calls[0][0]).toStrictEqual({
           label: 'mock decrease',
@@ -459,7 +463,7 @@ describe('App', () => {
 
       describe('if the onClick function received by props is called', () => {
         it('should call handleChangeCounter method 1 time', () => {
-          render(<App />);
+          sut = render(<App />);
 
           SimpleButton.mock.calls[0][0].onClick();
 
@@ -469,7 +473,7 @@ describe('App', () => {
         it('should call handleChangeCounter method with correct arguments', () => {
           CONSTANTS.COUNTER_UPDATE_TYPE_DECREASE = 'mock decrease const';
 
-          render(<App />);
+          sut = render(<App />);
 
           SimpleButton.mock.calls[0][0].onClick();
 
@@ -484,7 +488,7 @@ describe('App', () => {
       it('should be called with correct props', () => {
         state.content.increment = 'mock increment';
 
-        render(<App />);
+        sut = render(<App />);
 
         expect(SimpleButton.mock.calls[1][0]).toStrictEqual({
           label: 'mock increment',
@@ -494,7 +498,7 @@ describe('App', () => {
 
       describe('if the onClick function received by props is called', () => {
         it('should call handleChangeCounter method 1 time', () => {
-          render(<App />);
+          sut = render(<App />);
 
           SimpleButton.mock.calls[1][0].onClick();
 
@@ -504,7 +508,7 @@ describe('App', () => {
         it('should call handleChangeCounter method with correct arguments', () => {
           CONSTANTS.COUNTER_UPDATE_TYPE_INCREASE = 'mock increase const';
 
-          render(<App />);
+          sut = render(<App />);
 
           SimpleButton.mock.calls[1][0].onClick();
 
@@ -517,7 +521,7 @@ describe('App', () => {
 
     describe('if SimpleButton is called by the 3rd time', () => {
       it('should be called with correct props', () => {
-        render(<App />);
+        sut = render(<App />);
 
         expect(SimpleButton.mock.calls[2][0]).toStrictEqual({
           label: '+ 5',
@@ -527,7 +531,7 @@ describe('App', () => {
 
       describe('if the onClick function received by props is called', () => {
         it('should call handleChangeCounter method 1 time', () => {
-          render(<App />);
+          sut = render(<App />);
 
           SimpleButton.mock.calls[2][0].onClick();
 
@@ -537,7 +541,7 @@ describe('App', () => {
         it('should call handleChangeCounter method with correct arguments', () => {
           CONSTANTS.COUNTER_UPDATE_TYPE_INCREASE = 'other mock increase const';
 
-          render(<App />);
+          sut = render(<App />);
 
           SimpleButton.mock.calls[2][0].onClick();
 
@@ -551,7 +555,7 @@ describe('App', () => {
 
     describe('if SimpleButton is called by the 3rd time', () => {
       it('should be called with correct props', () => {
-        render(<App />);
+        sut = render(<App />);
 
         expect(SimpleButton.mock.calls[3][0]).toStrictEqual({
           label: '- 5',
@@ -561,7 +565,7 @@ describe('App', () => {
 
       describe('if the onClick function received by props is called', () => {
         it('should call handleChangeCounter method 1 time', () => {
-          render(<App />);
+          sut = render(<App />);
 
           SimpleButton.mock.calls[3][0].onClick();
 
@@ -571,7 +575,7 @@ describe('App', () => {
         it('should call handleChangeCounter method with correct arguments', () => {
           CONSTANTS.COUNTER_UPDATE_TYPE_DECREASE = 'other mock decrease const';
 
-          render(<App />);
+          sut = render(<App />);
 
           SimpleButton.mock.calls[3][0].onClick();
 

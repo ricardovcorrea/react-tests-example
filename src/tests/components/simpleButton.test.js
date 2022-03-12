@@ -24,7 +24,9 @@ describe('SimpleButton', () => {
   it('should render correct html', () => {
     props.label = 'Mock button label';
 
-    const { container } = render(<SimpleButton {...props} />);
+    sut = render(<SimpleButton {...props} />);
+    
+    const { container } = sut;
 
     expect(container).toMatchSnapshot();
   });
@@ -33,7 +35,7 @@ describe('SimpleButton', () => {
     it('should call onClick callback 1 time', () => {
       props.onClick = jest.fn();
 
-      render(<SimpleButton {...props} />);
+      sut = render(<SimpleButton {...props} />);
 
       const button = document.getElementsByTagName('button')[0];
 

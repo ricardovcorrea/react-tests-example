@@ -27,7 +27,9 @@ describe('SimpleHeader', () => {
     props.labels.title = 'mock title';
     props.labels.changeLanguage = 'mock change language';
 
-    const { container } = render(<SimpleHeader {...props} />);
+    sut = render(<SimpleHeader {...props} />);
+    
+    const { container } = sut;
 
     expect(container).toMatchSnapshot();
   });
@@ -36,7 +38,7 @@ describe('SimpleHeader', () => {
     it('should call onClick callback 1 time', () => {
       props.onClickChangeLanguage = jest.fn();
 
-      render(<SimpleHeader {...props} />);
+      sut = render(<SimpleHeader {...props} />);
 
       const span = document.getElementById('change-language-button');
 
