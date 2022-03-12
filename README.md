@@ -3,7 +3,6 @@
  PASS  src/tests/components/smpleHeader.test.js  
  PASS  src/tests/app.test.js  
  
--------------------|---------|----------|---------|---------|-------------------
 File               | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s
 -------------------|---------|----------|---------|---------|-------------------
 All files          |      95 |      100 |     100 |   94.87 |
