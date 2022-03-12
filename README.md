@@ -17,7 +17,6 @@ All files          |      95 |      100 |     100 |   94.87 |
  src/services      |     100 |      100 |     100 |     100 |
   index.js         |       0 |        0 |       0 |       0 |
   simpleService.js |     100 |      100 |     100 |     100 |
--------------------|---------|----------|---------|---------|-------------------
 
 Test Suites: 4 passed, 4 total  
 Tests:       51 passed, 51 total  
